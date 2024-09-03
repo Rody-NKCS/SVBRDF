@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>SVBRDF</title>
+
+    <meta name="description" content="Correlation-aware Encoder-Decoder with Adapters for SVBRDF Acquisition">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+
+    <script src="js/app.js"></script>
+	
+	
+	<link rel="stylesheet" href="css/dics.min.css">
+    <script src="scripts/dics.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', domReady);
+        function domReady() {
+            for (const e of document.querySelectorAll(".b-dics")) {
+                new Dics({
+                    container: e,
+                    textPosition: "top"
+                });
+            }
+        }
+    </script>
+	
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                Correlation-aware Encoder-Decoder with Adapters for SVBRDF Acquisition
+                <br>
+                <small>
+                    Proceedings of SIGGRAPH Asia 2024
+                </small>
+            </h2>
+        </div>
+		
+		<div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                          Di Luo*
+                        </a>
+                        <br>Nankai University<br>
+                    </li>
+					<li>
+                          Hanxiao Sun*
+                        </a>
+                        <br>Nankai University<br>
+                    </li>
+					<li>
+                        <a href="https://www.maleilab.cn/">
+                          Lei Ma
+                        </a>
+                        <br> Peking University<br>
+                    </li>
+                    <li>
+                          Jian Yang
+                        </a>
+                        <br> Nankai University<br>
+                    </li>
+                    <li>
+                        <a href="https://wangningbei.github.io/">
+                          Beibei Wang&#10013
+                        </a>
+                        <br>Nanjing University<br>
+                    </li><br>
+                </ul>
+            </div>
+        </div>
+		
+		<div class="row">
+            <div class="col-md-12 text-center">
+                *Contribute equally  &#10013Corresponding author
+            </div>
+        </div>
+
+        <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+							<!-- <a href="https://arxiv.org/abs/2402.02771" target="_blank"> -->
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <!-- <a href="https://github.com/Riga2/TensoSDF" target="_blank"> -->
+                                <h4><strong>Codes</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="imgs/Di24.png" style="width:100%;" class="img-responsive center-block" alt="overview"></image>
+                <br>
+                <p class="text-justify">
+                    Capturing materials from the real world avoids laborious manual material authoring. However, recovering high-fidelity Spatially Varying Bidirectional Reflectance Distribution Function (SVBRDF) maps from a few captured images is challenging due to its ill-posed nature. Existing approaches have made extensive efforts to alleviate this ambiguity issue by leveraging generative models with latent space optimization or extracting features with variant encoder-decoders. Albeit the rendered images at input views can match input images, the problematic decomposition among maps leads to significant differences when rendered under novel views/lighting. We observe that for human eyes, besides individual images, the correlation (or the highlights variation) among input images also serves as an important hint to recognize the materials of objects. Hence, our key insight is to explicitly model this correlation in the SVBRDF acquisition network. To this end, we propose a correlation-aware encoder-decoder network to model the correlation features among the input images via a graph convolutional network by treating channel features from each image as a graph node. This way, the ambiguity among the maps has been reduced significantly. However, several SVBRDF maps still tend to be over-smooth, leading to a mismatch in the novel-view rendering. The main reason is the uneven update of different maps caused by a single decoder for map interpretation. To address this issue, we further design an adapter-equipped decoder consisting of a main decoder and four tiny per-map adapters, where adapters are employed for individual maps interpretation, together with fine-tuning, to enhance flexibility. As a result, our framework allows the optimization of the latent space with the input image feature embeddings as the initial latent vector and the fine-tuning of per-map adapters. Consequently, our method can outperform existing approaches both visually and quantitatively on synthetic and real data.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h3>
+                    Pipeline
+                </h3>
+                <image src="imgs/pipeline.png" style="width:100%;" class="img-responsive center-block" alt="overview"></image>
+                <br>
+                <p class="text-justify">
+                    <b>Structure:</b> our network has an encoder-decoder structure, where the encoder consists of a graph convolutional network to learn correlation among the input images, followed by an encoder from Nonlinear Activation Free Network (NAFNet) to encode features into a latent vector z and the decoder includes a material decoder, together with several map adapters to output SVBRDFs. <b>Training:</b> the network is trained end-to-end with the rendering loss and map loss, and all the components are updated. <b>Optimization:</b> During the optimization, the network is optimized for each material with the rendering loss. The input images are fed into the encoder to obtain an initialized latent vector z, and then the decoder performs the latent space optimization (&#9312;) starting from z for several iterations. Later, the map adapters are fine-tuned (&#9313;) for 1K iterations with the found latent vector (frozen) and frozen material decoder to output the final SVBRDFs.
+                </p>
+            </div>
+        </div>
+
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h3>
+                Multi-image SVBRDF recovery
+            </h3>
+            <image src="imgs/compare_N=4_com.png" style="width:100%;" class="img-responsive center-block" alt="overview"></image>
+            <br>
+            <p class="text-justify">
+                Comparison between our method, MaterialGAN and DIR on synthetic and real data, where the input image count is set as four. Our model outperforms the other methods in terms of the recovered SVBRDFs and renderings. We use the error map to show the difference between the novel-view renderings and the reference images. The lowest error is marked in bold.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h3>
+                Single image SVBRDF recovery
+            </h3>
+            <image src="imgs/compare_N=1_com.png" style="width:100%;" class="img-responsive center-block" alt="overview"></image>
+            <br>
+            <p class="text-justify">
+                Comparison between our method, DIR, MaterialGAN, LAT and DeepBasis on synthetic and real data, with a single image as input. For the synthetic data, our model produces the closest SVBRDF maps in most cases, resulting in the highest-quality renderings at both input and novel views. For the real data, our method has less highlight burn-in than other methods, leading to the least error in the novel view renderings. 
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h3>
+                Anisotropic materials
+            </h3>
+            <image src="imgs/OpenSVBRDF.png" style="width:100%;" class="img-responsive center-block" alt="overview"></image>
+            <br>
+            <p class="text-justify">
+                We validate our method on anisotropic materials, where the roughness is encoded in red/green channel, following OpenSVBRDF. The renderings of both input and novel views can closely match the ground truth.
+            </p>
+        </div>
+    </div>
+
+    
+
+
+    <div class="row comp-margin">
+        <div class="col-md-10 col-md-offset-1">
+            <h3>
+                Other Results
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 text-center">
+            <ul class="nav nav-pills nav-justified">
+                <li>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/LJKw1wL-mdE?si=gVmN0W1OVVN-lfCi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </li>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <br>
+
+    <!-- <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h3>
+            Citation
+        </h3>
+        <div class="form-group col-md-10">
+            <textarea id="bibtex" class="form-control" readonly>
+@article{Li:2024:TensoSDF,
+  title={TensoSDF: Roughness-aware Tensorial Representation for Robust Geometry and Material Reconstruction},
+  author={Jia Li and Lu Wang and Lei Zhang and Beibei Wang},
+  journal ={ACM Transactions on Graphics (Proceedings of SIGGRAPH 2024)},
+  year = {2024},
+  volume = {43},
+  number = {4},
+  pages={150:1--13}
+}
+</textarea>
+        </div>
+    </div>
+</div>	     -->
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                The website template was borrowed from <a href="https://bakedsdf.github.io/">BakedSDF</a>.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
